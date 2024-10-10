@@ -1,0 +1,56 @@
+<script>
+    // Create variables at the top
+    var amount;
+    var max;
+    var min;
+
+    // Create a function that asks the user for an input and process those inputs
+    function check() {
+        amount = prompt("How many random numbers do you want to generate?");
+        amount = Number(amount);
+
+        if (isNaN(amount) || amount <=0) {
+            document.write("That is not a valid input.");
+        }
+        else {
+        max = prompt("What do you want the maximum number to be? The default number is 0.");
+        max = Number(max);
+        
+            if (isNaN(max)) {
+                document.write("That is not a valid input.");
+            }
+            else {
+            min = prompt("What do you want the minimum number to be? The default number is 0.")
+            min = Number(min);
+      
+                if (isNaN(min) || min >= max) {
+                    document.write("That is not a valid input.");
+                }
+                else {
+                // Create a for-loop that generates the amount of random numbers based on the user inputs
+                for (var numbers = 0; numbers < amount; numbers++) {
+                numGen();
+                }
+                }
+            }
+        }
+    }
+
+    // Run the check function to "start" the program
+    check();
+    
+    // Create a function that generates a random number based on the user inputs
+    function numGen() {
+        var random = Math.random();
+        var resultMax = Math.floor(random * (max + 1));
+        var resultMin = Math.floor(random * (min - 1));
+        var result = resultMax + resultMin;
+
+        if (result <= (min-1) || result >= (max + 1)) {
+            numGen();
+        }
+        else {
+            document.write(result + " " + "<br>");
+        }
+    }
+</script>
